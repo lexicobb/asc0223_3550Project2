@@ -42,7 +42,7 @@ describe('API Endpoints', () => {
   });
 
   test('should start the server and listen on the specified port', (done) => {
-    const port = 8080; // The expected port
+    const port = 8000; // The expected port
     const server = app.listen(port, () => {
       server.close(() => {
         done(); // Ensure the server starts and closes without errors
