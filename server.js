@@ -63,7 +63,7 @@ function generateExpiredJWT() {
 }
 
 // database operations
-function Database() {
+function db() {
   const sqlite3 = require('sqlite3').verbose();
   let db = new sqlite3.Database('./totally_not_my_privateKeys.db'); // create database file
   db.run('CREATE TABLE IF NOT EXISTS keys(kid INTEGER PRIMARY KEY AUTOINCREMENT,key BLOB NOT NULL,exp INTEGER NOT NULL)'); // create table
@@ -103,8 +103,9 @@ app.post('/auth', (req, res) => {
 generateKeyPairs().then(() => {
   generateToken()
   generateExpiredJWT()
-  Database() // perform database operations
+  db() // perform database operations
   app.listen(port, () => {
     console.log(`Server started on http://localhost:${port}`);
   });
+  module.exports = app;
 });
